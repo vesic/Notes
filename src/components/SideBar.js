@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Spinner from 'react-spinkit'
 import _ from 'lodash';
 

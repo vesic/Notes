@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash'
-import Chance from 'chance'
 import ToolBar from './components/ToolBar'
 import SideBar from './components/SideBar'
 import Note from './components/Note'
@@ -36,7 +35,7 @@ class App extends Component {
   onNoteSelect = (id) => {
     console.log(id);
     this.setState({
-      selectedNote: _.find(this.state.notes, note => note.id == id)
+      selectedNote: _.find(this.state.notes, note => note.id === id)
     }, () => {
       // console.log(this.state.selectedNote);
     })

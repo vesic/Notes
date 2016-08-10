@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 class AddNoteModal extends React.Component {
   constructor(props) {
@@ -28,8 +28,6 @@ class AddNoteModal extends React.Component {
   }
 
   render () {
-    const { saveNote } = this.props;
-
     return (
       <div>
         <span><strong style={{fontSize: '1.5em'}}>Notes:</strong></span>

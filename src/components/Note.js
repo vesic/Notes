@@ -1,11 +1,13 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 const Note = (props) => {
   const { selectedNote } = props;
 
   if (!selectedNote) {
     return (
-      <h2>No note selected</h2>
+      <div className='col-xs-8'>
+        <h1 className='text-center well'>No note selected!</h1>
+      </div>
     )
   }
 
