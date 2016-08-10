@@ -6,9 +6,13 @@
     "react-scripts": "0.2.1"
   },
   "dependencies": {
+    "chance": "^1.0.4",
     "lodash": "^4.14.2",
     "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "react-dom": "^15.2.1",
+    "react-sparklines": "^1.6.0",
+    "react-spinkit": "^1.1.8",
+    "superagent": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
