@@ -9,6 +9,7 @@
     "chance": "^1.0.4",
     "express": "^4.14.0",
     "lodash": "^4.14.2",
+    "morgan": "^1.7.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-sparklines": "^1.6.0",

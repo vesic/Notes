@@ -62,11 +62,23 @@ class App extends Component {
     })
   }
 
+  onFilterNotes = (filterNote) => {
+    request
+    .get('./notes.json')
+    .end((err, res) => {
+      if (!err) {
+        let notes = _.filter(res.body, n => _.startsWith(n.title, filterNote));
+        this.setState({notes})
+      }
+    })
+  }
+
   render() {
     return (
       <div>
         <Header />
         <ToolBar
+          onFilterNotes={this.onFilterNotes}
           onDeleteNote={this.onDeleteNote}
           saveNote={this.saveNote}
           />

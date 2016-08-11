@@ -6,7 +6,8 @@ class AddNoteModal extends React.Component {
 
     this.state = {
       title: '',
-      content: ''
+      content: '',
+      noteFilter: ''
     }
   }
 
@@ -15,7 +16,7 @@ class AddNoteModal extends React.Component {
 
     this.setState({
       title: '',
-      content: ''
+      content: '',
     })
   }
 
@@ -27,13 +28,24 @@ class AddNoteModal extends React.Component {
     this.setState({content: event.target.value});
   }
 
+  handleFilterChange = (event) => {
+    this.setState({noteFilter: event.target.value}, () => {
+      this.props.onFilterNotes(this.state.noteFilter);
+    });
+  }
+
   render () {
     return (
-      <div>
+      <div className='row'>
+        <div className='col-xs-12'>
         <span><strong style={{fontSize: '1.5em'}}>Notes:</strong></span>
         <button type="button" className="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#myModal">
           +
         </button>
+        <input
+          value={this.state.noteFilter}
+          onChange={this.handleFilterChange}
+          style={{marginTop: 10, borderRadius:20}} className='form-control input-sm' />
         <div id='myModal' className="modal fade" tabIndex="-1" role="dialog">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -75,6 +87,7 @@ class AddNoteModal extends React.Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
     )
   }

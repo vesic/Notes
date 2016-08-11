@@ -2,12 +2,12 @@ import React from 'react'
 import AddNoteModal from './AddNoteModal'
 
 const ToolBar = (props) => {
-  const { onDeleteNote, saveNote } = props;
+  const { onDeleteNote, saveNote, onFilterNotes } = props;
 
   return (
     <div className='row'>
       <div className='col-xs-4'>
-        <AddNoteModal saveNote={saveNote}/>
+        <AddNoteModal saveNote={saveNote} onFilterNotes={onFilterNotes}/>
       </div>
       <div className='col-xs-8'>
         <button
