@@ -9,6 +9,8 @@ import request from 'superagent'
 // let notes = require('./notes.json');
 // console.log('these are', notes);
 
+let notesUrl = 'http://localhost:3333';
+
 class App extends Component {
   constructor() {
     super();
@@ -26,16 +28,20 @@ class App extends Component {
 
   getNotes = () => {
     request
-    .get('./notes.json')
+    .get(notesUrl + '/notes')
     .end((err, res) => {
-      this.setState({notes: res.body})
+      this.setState({
+        notes: res.body,
+        selectedNote: null,
+        filterNote: ''
+      })
     })
   }
 
   onNoteSelect = (id) => {
     console.log(id);
     this.setState({
-      selectedNote: _.find(this.state.notes, note => note.id === id)
+      selectedNote: _.find(this.state.notes, note => note._id === id)
     }, () => {
       // console.log(this.state.selectedNote);
     })
@@ -48,26 +54,41 @@ class App extends Component {
     }
 
     if (confirm('Are you sure?')) {
-      this.setState({
-        notes: _.reject(this.state.notes, (note) => note.id === this.state.selectedNote.id),
-        selectedNote: null
-      }, () => console.log('filtered notes'))
+      request
+        .post(notesUrl + `/notes/${this.state.selectedNote._id}/delete`)
+        .end((err, res) => {
+          if (res.statusCode === 204) {
+            this.getNotes();
+          } else {
+            // handle error
+          }
+        })
+      // this.setState({
+      //   notes: _.reject(this.state.notes, (note) => note.id === this.state.selectedNote.id),
+      //   selectedNote: null
+      // }, () => console.log('filtered notes'))
     }
   }
 
   saveNote = (title, content) => {
-    this.setState({
-      notes: this.state.notes.concat([{title, content}]),
-      selectedNote: null
-    })
+    request
+      .post(notesUrl + '/notes/add')
+      .send({title: title, content: content})
+      .end((err, res) => {
+        this.getNotes();
+      })
+    // this.setState({
+    //   notes: this.state.notes.concat([{title, content}]),
+    //   selectedNote: null
+    // })
   }
 
   onFilterNotes = (filterNote) => {
     request
-    .get('./notes.json')
+    .get(notesUrl + '/notes')
     .end((err, res) => {
       if (!err) {
-        let notes = _.filter(res.body, n => _.startsWith(n.title, filterNote));
+        let notes = _.filter(res.body, n => _.startsWith(_.toLower(n.title), _.toLower(filterNote)));
         this.setState({notes})
       }
     })

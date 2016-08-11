@@ -11,6 +11,10 @@ class AddNoteModal extends React.Component {
     }
   }
 
+  clearFilter = () => {
+
+  }
+
   onSaveNote = () => {
     this.props.saveNote(this.state.title, this.state.content);
 
@@ -42,10 +46,23 @@ class AddNoteModal extends React.Component {
         <button type="button" className="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#myModal">
           +
         </button>
-        <input
-          value={this.state.noteFilter}
-          onChange={this.handleFilterChange}
-          style={{marginTop: 10, borderRadius:20}} className='form-control input-sm' />
+        <div
+          className="input-group"
+          style={{marginTop:10}}>
+          <input
+            className="form-control input-sm"
+            value={this.state.noteFilter}
+            onChange={this.handleFilterChange} />
+          <span
+            onClick={
+              () => {
+                this.props.onFilterNotes();
+                this.setState({noteFilter:''})
+              }
+            }
+            className="input-group-addon input-sm" id="basic-addon1">clear</span>
+        </div>
+
         <div id='myModal' className="modal fade" tabIndex="-1" role="dialog">
           <div className="modal-dialog" role="document">
             <div className="modal-content">

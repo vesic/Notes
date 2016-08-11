@@ -1,6 +1,7 @@
 import React from 'react'
 import Spinner from 'react-spinkit'
 import _ from 'lodash';
+import moment from 'moment';
 
 const SideBar = (props) => {
   const { notes, onNoteSelect } = props;
@@ -22,10 +23,10 @@ const SideBar = (props) => {
         {
           _.map(notes, (note) =>
             <tr
-              onClick={ onNoteSelect.bind(null, note.id) }
-              key={note.id}>
+              onClick={ onNoteSelect.bind(null, note._id) }
+              key={note._id}>
               <td>
-                {note.title} <span className="pull-right label label-info">some time ago</span>
+                {note.title} <span className="pull-right label label-info">{moment(note.date).fromNow()}</span>
               </td>
             </tr>)
         }
