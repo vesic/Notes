@@ -19,10 +19,10 @@ app.use(require('morgan')('short'));
 app.use(require('cors')());
 // app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-// app.use(express.static('public'));
+app.use(express.static('build'));
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/notes', (req, res) => {
