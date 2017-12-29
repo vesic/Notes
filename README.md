@@ -1,3 +1,3 @@
 ## Notes
 
-https://damp-plateau-39611.herokuapp.com
+live: https://damp-plateau-39611.herokuapp.com
