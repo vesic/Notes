@@ -9,7 +9,7 @@ import request from 'superagent'
 // let notes = require('./notes.json');
 // console.log('these are', notes);
 
-let notesUrl = 'http://localhost:3333';
+let notesUrl = 'https://damp-plateau-39611.herokuapp.com';
 
 class App extends Component {
   constructor() {
